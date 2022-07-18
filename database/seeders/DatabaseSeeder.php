@@ -13,20 +13,8 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         $this->call([
             UsersSeeder::class,
             PermisosSeeder::class,
@@ -34,31 +22,31 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        Sucursales::factory(5)->create();
-        Personas::factory(300)->create();
-        Depositos::factory(15)->create();
-        Productos::factory(20)->create()->each(function($product){
-            $product->depositos()->attach( fake()->numberBetween(1,15), array('cantidad' => fake()->numberBetween(10,50)) );
-        });
+        // Sucursales::factory(5)->create();
+        // Personas::factory(300)->create();
+        // Depositos::factory(15)->create();
+        // Productos::factory(20)->create()->each(function($product){
+        //     $product->depositos()->attach( fake()->numberBetween(1,15), array('cantidad' => fake()->numberBetween(10,50)) );
+        // });
 
-        $this->call([
-            ConfigSeeder::class
-        ]);
+        // $this->call([
+        //     ConfigSeeder::class
+        // ]);
 
-        Compras::factory(50)->create()->each(function($compra){
-            $p1 = Productos::find( fake()->numberBetween(1,10) );
-            $p2 = Productos::find( fake()->numberBetween(11,20) );
+        // Compras::factory(50)->create()->each(function($compra){
+        //     $p1 = Productos::find( fake()->numberBetween(1,10) );
+        //     $p2 = Productos::find( fake()->numberBetween(11,20) );
 
-            $compra->productos()->attach( $p1->id, array('depositos_id' => fake()->numberBetween(1,15), 'ivas_id' => fake()->numberBetween(1,3), 'cantidad' => fake()->numberBetween(1,10), 'precio' => $p1->costo_promedio ) );
-            $compra->productos()->attach( $p2->id, array('depositos_id' => fake()->numberBetween(1,15), 'ivas_id' => fake()->numberBetween(1,3), 'cantidad' => fake()->numberBetween(1,10), 'precio' => $p2->costo_promedio ) );
-        });
+        //     $compra->productos()->attach( $p1->id, array('depositos_id' => fake()->numberBetween(1,15), 'ivas_id' => fake()->numberBetween(1,3), 'cantidad' => fake()->numberBetween(1,10), 'precio' => $p1->costo_promedio ) );
+        //     $compra->productos()->attach( $p2->id, array('depositos_id' => fake()->numberBetween(1,15), 'ivas_id' => fake()->numberBetween(1,3), 'cantidad' => fake()->numberBetween(1,10), 'precio' => $p2->costo_promedio ) );
+        // });
 
-        Ventas::factory(100)->create()->each(function($ventas){
-            $p1 = Productos::find( fake()->numberBetween(1,10) );
-            $p2 = Productos::find( fake()->numberBetween(11,20) );
+        // Ventas::factory(100)->create()->each(function($ventas){
+        //     $p1 = Productos::find( fake()->numberBetween(1,10) );
+        //     $p2 = Productos::find( fake()->numberBetween(11,20) );
 
-            $ventas->productos()->attach( $p1->id, array('depositos_id' => fake()->numberBetween(1,15), 'ivas_id' => fake()->numberBetween(1,3), 'cantidad' => fake()->numberBetween(1,5), 'precio' => $p1->costo_unitario ) );
-            $ventas->productos()->attach( $p2->id, array('depositos_id' => fake()->numberBetween(1,15), 'ivas_id' => fake()->numberBetween(1,3), 'cantidad' => fake()->numberBetween(1,5), 'precio' => $p2->costo_unitario ) );
-        });
+        //     $ventas->productos()->attach( $p1->id, array('depositos_id' => fake()->numberBetween(1,15), 'ivas_id' => fake()->numberBetween(1,3), 'cantidad' => fake()->numberBetween(1,5), 'precio' => $p1->costo_unitario ) );
+        //     $ventas->productos()->attach( $p2->id, array('depositos_id' => fake()->numberBetween(1,15), 'ivas_id' => fake()->numberBetween(1,3), 'cantidad' => fake()->numberBetween(1,5), 'precio' => $p2->costo_unitario ) );
+        // });
     }
 }
